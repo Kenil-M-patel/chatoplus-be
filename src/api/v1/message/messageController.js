@@ -94,7 +94,7 @@ const sendMessage = async (req, res) => {
       last_message: text,
       last_message_time: message.timestamp,
     });
-    return sendSuccessResponse(res, {
+    return sendSuccessResponse(res, "Message sent successfully", {
       id: message._id,
       senderId: userId,
       text,
