@@ -9,7 +9,7 @@ router.get("/", authMiddleware ,  getAllUsers);
 router.post("/register", register);
 router.post("/login", login);
 
-router.post("/verify", async (req, res) => {
+router.post("/verify", authMiddleware , async (req, res) => {
   res.status(200).json({ status: "success", data: "Token is valid" });
 });
 

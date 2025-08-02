@@ -78,22 +78,22 @@ const sendMessage = async (req, res) => {
     await conversation.save();
     // Emit to receiver via socket
     const room = [userId.toString(), receiverId.toString()].sort().join(":");
-    io().to(room).emit("message", {
-      id: message._id,
-      senderId: userId,
-      text,
-      timestamp: message.timestamp,
-    });
+    // io().to(room).emit("message", {
+    //   id: message._id,
+    //   senderId: userId,
+    //   text,
+    //   timestamp: message.timestamp,
+    // });
     io().to(`user:${receiverId}`).emit("userUpdate", {
       userId,
       last_message: text,
       last_message_time: message.timestamp,
     });
-    io().to(`user:${userId}`).emit("userUpdate", {
-      userId: receiverId,
-      last_message: text,
-      last_message_time: message.timestamp,
-    });
+    // io().to(`user:${userId}`).emit("userUpdate", {
+    //   userId: receiverId,
+    //   last_message: text,
+    //   last_message_time: message.timestamp,
+    // });
     return sendSuccessResponse(res, "Message sent successfully", {
       id: message._id,
       senderId: userId,

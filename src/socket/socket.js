@@ -50,7 +50,6 @@ const initSocket = (server) => {
 
     socket.on("sendMessage", async ({ receiverId, text }) => {
       try {
-        console.log('hello')
         const sender = await User.findById(userId);
         const receiver = await User.findById(receiverId);
 
