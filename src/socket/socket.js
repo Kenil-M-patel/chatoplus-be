@@ -10,8 +10,9 @@ let io;
 
 const initSocket = (server) => {
   io = new Server(server, {
+    transports: ['websocket', 'polling'],
     cors: {
-      origin: "*", // Set to your frontend URL in prod
+      origin: "*", 
       methods: ["GET", "POST"],
     },
   });
