@@ -78,6 +78,7 @@ const sendMessage = async (req, res) => {
     await conversation.save();
     // Emit to receiver via socket
 
+    console.log(userSocketMap)
     const receiverSocketId = userSocketMap[receiverId];
     if (receiverSocketId) {
       io().to(receiverSocketId).emit("userUpdate", {
@@ -86,6 +87,8 @@ const sendMessage = async (req, res) => {
         last_message_time: message.timestamp,
       });
     }
+
+    console.log('message sent', receiverSocketId);
     return sendSuccessResponse(res, "Message sent successfully", {
       id: message._id,
       senderId: userId,

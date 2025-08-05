@@ -42,6 +42,7 @@ const initSocket = (server) => {
 
     socket.join(`user:${userId}`);
     userSocketMap[userId] = socket.id;
+    console.log(userSocketMap)
 
     socket.on("joinChat", (receiverId) => {
       const room = [userId, receiverId].sort().join(":");
