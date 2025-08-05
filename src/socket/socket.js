@@ -19,6 +19,7 @@ const initSocket = (server) => {
 
   // Middleware for JWT auth
   io.use(async (socket, next) => {
+      console.log("🔐 Incoming socket handshake:", socket.handshake.auth);
     try {
       const token = socket.handshake.auth?.token;
       if (!token) return next(new Error("No token provided"));
